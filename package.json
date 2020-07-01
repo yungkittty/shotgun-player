@@ -1,10 +1,13 @@
 {
   "name": "shotgun-player",
+  "homepage": "https://yungkittty.github.io/shotgun-player/",
   "version": "0.1.0",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "dependencies": {
