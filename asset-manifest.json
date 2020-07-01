@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/shotgun-player/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/shotgun-player/static/js/main.1ecf0d5c.chunk.js",
+    "main.js.map": "/shotgun-player/static/js/main.1ecf0d5c.chunk.js.map",
+    "runtime-main.js": "/shotgun-player/static/js/runtime-main.65b1d958.js",
+    "runtime-main.js.map": "/shotgun-player/static/js/runtime-main.65b1d958.js.map",
+    "static/js/2.7f407634.chunk.js": "/shotgun-player/static/js/2.7f407634.chunk.js",
+    "static/js/2.7f407634.chunk.js.map": "/shotgun-player/static/js/2.7f407634.chunk.js.map",
+    "index.html": "/shotgun-player/index.html",
+    "precache-manifest.09a8afe8558c75cbca169feaa0534241.js": "/shotgun-player/precache-manifest.09a8afe8558c75cbca169feaa0534241.js",
+    "service-worker.js": "/shotgun-player/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/shotgun-player/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.7f407634.chunk.js.LICENSE.txt": "/shotgun-player/static/js/2.7f407634.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.65b1d958.js",
+    "static/js/2.7f407634.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.1ecf0d5c.chunk.js"
+  ]
+}
