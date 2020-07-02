@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Route, Redirect } from "react-router-dom";
 import useCurrentUser from "../../hooks/use-current-user";
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = ({ children, ...others }) => {
   const { loading, id } = useCurrentUser();
 
   return (
