@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/shotgun-player/static/css/main.cd5ee15a.chunk.css",
-    "main.js": "/shotgun-player/static/js/main.2d55306a.chunk.js",
-    "main.js.map": "/shotgun-player/static/js/main.2d55306a.chunk.js.map",
+    "main.js": "/shotgun-player/static/js/main.6dc6a498.chunk.js",
+    "main.js.map": "/shotgun-player/static/js/main.6dc6a498.chunk.js.map",
     "runtime-main.js": "/shotgun-player/static/js/runtime-main.65b1d958.js",
     "runtime-main.js.map": "/shotgun-player/static/js/runtime-main.65b1d958.js.map",
-    "static/js/2.4a9f0e73.chunk.js": "/shotgun-player/static/js/2.4a9f0e73.chunk.js",
-    "static/js/2.4a9f0e73.chunk.js.map": "/shotgun-player/static/js/2.4a9f0e73.chunk.js.map",
+    "static/js/2.8ea63ff8.chunk.js": "/shotgun-player/static/js/2.8ea63ff8.chunk.js",
+    "static/js/2.8ea63ff8.chunk.js.map": "/shotgun-player/static/js/2.8ea63ff8.chunk.js.map",
     "index.html": "/shotgun-player/index.html",
-    "precache-manifest.c9e39026397a81a6915e2efc074b7a5d.js": "/shotgun-player/precache-manifest.c9e39026397a81a6915e2efc074b7a5d.js",
+    "precache-manifest.4d1d2da2007118c074f4ac6087cb82d2.js": "/shotgun-player/precache-manifest.4d1d2da2007118c074f4ac6087cb82d2.js",
     "service-worker.js": "/shotgun-player/service-worker.js",
     "static/css/main.cd5ee15a.chunk.css.map": "/shotgun-player/static/css/main.cd5ee15a.chunk.css.map",
-    "static/js/2.4a9f0e73.chunk.js.LICENSE.txt": "/shotgun-player/static/js/2.4a9f0e73.chunk.js.LICENSE.txt"
+    "static/js/2.8ea63ff8.chunk.js.LICENSE.txt": "/shotgun-player/static/js/2.8ea63ff8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.65b1d958.js",
-    "static/js/2.4a9f0e73.chunk.js",
+    "static/js/2.8ea63ff8.chunk.js",
     "static/css/main.cd5ee15a.chunk.css",
-    "static/js/main.2d55306a.chunk.js"
+    "static/js/main.6dc6a498.chunk.js"
   ]
 }

@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3e9ae5608f72b43d8620afcc4d7f4d91",
+    "revision": "5d9418f9c4e5c14b4ec2d25c990e9937",
     "url": "/shotgun-player/index.html"
   },
   {
-    "revision": "afd0b25726dbfd913a21",
+    "revision": "b390d87c93d00c67b461",
     "url": "/shotgun-player/static/css/main.cd5ee15a.chunk.css"
   },
   {
-    "revision": "714e4444b7e63168fa36",
-    "url": "/shotgun-player/static/js/2.4a9f0e73.chunk.js"
+    "revision": "0a119a69354857708a5a",
+    "url": "/shotgun-player/static/js/2.8ea63ff8.chunk.js"
   },
   {
     "revision": "c87550333da8df8ab4c80bd1d6e9defb",
-    "url": "/shotgun-player/static/js/2.4a9f0e73.chunk.js.LICENSE.txt"
+    "url": "/shotgun-player/static/js/2.8ea63ff8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "afd0b25726dbfd913a21",
-    "url": "/shotgun-player/static/js/main.2d55306a.chunk.js"
+    "revision": "b390d87c93d00c67b461",
+    "url": "/shotgun-player/static/js/main.6dc6a498.chunk.js"
   },
   {
     "revision": "c9ea47a30c44b0bfd7e5",
