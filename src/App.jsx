@@ -1,6 +1,7 @@
 import React from "react";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { BrowserRouter as Router } from "react-router-dom";
+import AppContainer from "./components/app-container";
 import PrivateRoute from "./components/private-route";
 import PublicRoute from "./components/public-route";
 import Home from "./scenes/home";
@@ -12,14 +13,16 @@ const client = configureClient();
 const App = () => {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <PrivateRoute>
-          <Home />
-        </PrivateRoute>
-        <PublicRoute>
-          <SignIn />
-        </PublicRoute>
-      </Router>
+      <AppContainer>
+        <Router>
+          <PrivateRoute exact path="/">
+            <Home />
+          </PrivateRoute>
+          <PublicRoute path="/sign-in">
+            <SignIn />
+          </PublicRoute>
+        </Router>
+      </AppContainer>
     </ApolloProvider>
   );
 };

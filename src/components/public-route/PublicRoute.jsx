@@ -15,7 +15,7 @@ const PublicRoute = ({ children, ...others }) => {
 
         if (!id) return children;
 
-        return <Redirect to="/sign-in" />;
+        return <Redirect to="/" />;
       }}
     />
   );
