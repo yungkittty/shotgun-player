@@ -1,10 +1,18 @@
+import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import { currentUserQueries } from "../../datas/current-user";
+
+const GET_CURRENT_USER = gql`
+  {
+    me {
+      id
+    }
+  }
+`;
+
+// This doesn't work when session is expired!
 
 const useCurrentUser = () => {
-  const { loading, error, data } = useQuery(
-    currentUserQueries.GET_CURRENT_USER
-  );
+  const { loading, error, data } = useQuery(GET_CURRENT_USER);
 
   if (loading || error) {
     return { loading, error };

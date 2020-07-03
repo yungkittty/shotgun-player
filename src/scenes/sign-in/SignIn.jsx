@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import Container from "../../components/container";
 import Text from "../../components/text";
 import Button from "../../components/button";
 
-const SignInContainer = styled.div`
+const SignInContainer = styled(Container)`
   margin: auto;
 `;
 
@@ -31,7 +32,7 @@ const SignIn = () => {
       </Text>
       <SignInText color="grey">
         {/* eslint-disable-line */}
-        Discover the event lineup and more!
+        Discover the event line up and more!
       </SignInText>
       <SignInButton onClick={onButtonClick}>
         <Text size={18} weight={700}>

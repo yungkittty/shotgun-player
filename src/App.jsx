@@ -1,6 +1,6 @@
 import React from "react";
 import { ApolloProvider } from "@apollo/react-hooks";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
 import AppContainer from "./components/app-container";
 import PrivateRoute from "./components/private-route";
 import PublicRoute from "./components/public-route";
@@ -21,6 +21,7 @@ const App = () => {
           <PublicRoute path="/sign-in">
             <SignIn />
           </PublicRoute>
+          <Redirect to="/" />
         </Router>
       </AppContainer>
     </ApolloProvider>
