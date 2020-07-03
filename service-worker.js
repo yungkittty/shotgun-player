@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/shotgun-player/precache-manifest.4d1d2da2007118c074f4ac6087cb82d2.js"
+  "/shotgun-player/precache-manifest.cb4912064a0d59bc7874bc0c4134367f.js"
 );
 
 self.addEventListener('message', (event) => {
