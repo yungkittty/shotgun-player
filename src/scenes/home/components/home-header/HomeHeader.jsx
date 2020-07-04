@@ -19,6 +19,7 @@ const HeaderContainer = styled(Container)`
 
     return `
       display: flex;
+      flex-shrink: 0;
       flex-direction: column;
       justify-content: flex-end;
       width: 100%;
@@ -31,15 +32,8 @@ const HeaderContainer = styled(Container)`
   }}
 `;
 
-// ...
-
-const HeaderTitle = styled(Text)``;
-
-const HeaderSubtitle = styled(Text)``;
-
-// ...
-
 const HeaderFooter = styled(Container)`
+  flex-shrink: 0;
   width: 100vw;
   height: 100px;
   padding-left: 10%;
@@ -51,14 +45,14 @@ const HomeHeader = ({ eventName, eventImages }) => {
   return (
     <>
       <HeaderContainer eventImages={eventImages}>
-        <HeaderTitle size={32} weight={700}>
+        <Text size={32} weight={700}>
           {/* eslint-disable-line */}
           {eventName}
-        </HeaderTitle>
-        <HeaderSubtitle size={16} color="grey">
+        </Text>
+        <Text size={16} color="grey">
           {/* eslint-disable-line */}
           Mon 6 July
-        </HeaderSubtitle>
+        </Text>
       </HeaderContainer>
       <HeaderFooter />
     </>

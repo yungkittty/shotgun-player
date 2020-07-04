@@ -11,6 +11,8 @@ const HomeContainer = styled(Container)`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 const HomeBodyContainer = styled(Container)`
@@ -28,6 +30,7 @@ const Home = () => {
     loading,
     name: eventName,
     images: eventImages,
+    tracks: eventTracks,
   } = useEvent("7Cy3wdbRlZqW22fUDGWpwk");
 
   if (loading) return null;
@@ -40,9 +43,8 @@ const Home = () => {
         eventImages={eventImages}
       />
       <HomeBodyContainer>
-        {/* eslint-disable-line */}
         <HomeTicketTile />
-        <HomeLineUpTile />
+        <HomeLineUpTile eventTracks={eventTracks} />
       </HomeBodyContainer>
     </HomeContainer>
   );

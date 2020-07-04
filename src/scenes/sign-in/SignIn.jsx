@@ -13,6 +13,9 @@ const SignInText = styled(Text)`
 `;
 
 const SignInButton = styled(Button)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 500px;
   height: 50px;
   background-color: #1db954;

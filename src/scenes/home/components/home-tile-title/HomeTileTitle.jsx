@@ -13,6 +13,7 @@ const TitleContainer = styled(Container)`
 const TitleOutline = styled(Container)`
   width: 100%;
   height: 1px;
+  margin-bottom: 50px;
   background-image: linear-gradient(
     to right,
     rgb(108, 19, 221),

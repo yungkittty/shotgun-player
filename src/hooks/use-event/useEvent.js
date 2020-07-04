@@ -18,6 +18,11 @@ const GET_EVENT = gql`
       tracks {
         track {
           id
+          name
+          artists {
+            name
+          }
+          preview_url
         }
       }
     }
