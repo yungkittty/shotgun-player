@@ -15,8 +15,12 @@ const Icon = ({ size, ...others }) => (
 
 // This should defined standard values!
 
+Icon.defaultProps = {
+  size: undefined,
+};
+
 Icon.propTypes = {
-  size: PropTypes.number.isRequired,
+  size: PropTypes.number,
 };
 
 export default Icon;

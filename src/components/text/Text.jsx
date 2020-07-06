@@ -24,9 +24,12 @@ Text.defaultProps = {
 Text.propTypes = {
   size: PropTypes.oneOf([
     // eslint-disable-line
+    10,
+    12,
     16,
     18,
     24,
+    32,
   ]),
   weight: PropTypes.oneOf([
     // eslint-disable-line

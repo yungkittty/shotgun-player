@@ -10,17 +10,27 @@ import PlayerListItem from "./components/player-list-item";
 const PlayerContainer = styled(Container)`
   display: flex;
   flex-direction: column;
-  width: 50%;
-  height: 500px;
+  width: 100%;
+  max-height: 500px;
 `;
 
-const TilePlayer = ({ eventTracks }) => {
+const TilePlayer = ({
+  // eslint-disable-line
+  eventTracks,
+  eventTracksLiked,
+  setEventTracksLiked,
+  setEventTracksLikable,
+}) => {
   const audioRef = React.useRef();
 
+  const [tracks, setTracks] = React.useState({});
+  const [tracksIds, setTracksIds] = React.useState([]);
   const [currentTrackIndex, setCurrentTrackIndex] = React.useState(0);
   const [currentTrackPlayed, setCurrentTrackPlayed] = React.useState(false);
   const [currentTrackDuration, setCurrentTrackDuration] = React.useState(0);
   const [currentTrackTime, setCurrentTrackTime] = React.useState(0);
+
+  const tracksLikedRef = React.useRef(0);
 
   const playCurrentTrack = () => {
     setCurrentTrackPlayed(true);
@@ -32,19 +42,118 @@ const TilePlayer = ({ eventTracks }) => {
     audioRef.current.pause();
   };
 
-  const playTrack = React.useCallback((nextCurrentTrackIndex) => {
-    setCurrentTrackIndex(nextCurrentTrackIndex);
+  const resetCurrentTrack = () => {
+    setCurrentTrackIndex(0);
+    setCurrentTrackPlayed(false);
+    audioRef.current.pause();
+    audioRef.current.load();
+  };
+
+  const playTrack = React.useCallback((trackIndex) => {
+    setCurrentTrackIndex(trackIndex);
     audioRef.current.load();
     playCurrentTrack();
   }, []);
 
+  React.useEffect(() => {
+    setTracks((prevCurrentTracks) => {
+      const nextCurrentTrackIds = [];
+      if (eventTracksLiked) {
+        const nextCurrentTracks = _.reduce(
+          prevCurrentTracks,
+          (nextCurrentTracksOthers, prevCurrentTrack, prevCurrentTrackId) => {
+            if (!prevCurrentTrack.liked) return nextCurrentTracksOthers;
+            nextCurrentTrackIds.push(prevCurrentTrackId);
+            return { ...nextCurrentTracksOthers, [prevCurrentTrackId]: prevCurrentTrack };
+          },
+          {}
+        );
+        setTracksIds(nextCurrentTrackIds);
+        return nextCurrentTracks;
+      }
+      const nextCurrentTracks = _.reduce(
+        eventTracks,
+        (nextCurrentTracksOthers, { track: eventTrack }) => {
+          const nextCurrentTrackLiked = (prevCurrentTracks[eventTrack.id] || {}).liked || false;
+          const nextCurrentTrack = { ...eventTrack, liked: nextCurrentTrackLiked };
+          nextCurrentTrackIds.push(eventTrack.id);
+          return { ...nextCurrentTracksOthers, [eventTrack.id]: nextCurrentTrack };
+        },
+        {}
+      );
+      setTracksIds(nextCurrentTrackIds);
+      return nextCurrentTracks;
+    });
+
+    resetCurrentTrack();
+  }, [eventTracks, eventTracksLiked]);
+
+  const currentTrack = tracks[tracksIds[currentTrackIndex]] || {};
+
   const stepBackwardCurrentTrack = () => {
-    playTrack(currentTrackIndex - 1 < 0 ? eventTracks.length - 1 : currentTrackIndex - 1);
+    playTrack(currentTrackIndex - 1 < 0 ? tracksIds.length - 1 : currentTrackIndex - 1);
   };
 
   const stepForwardCurrentTrack = React.useCallback(() => {
-    playTrack(currentTrackIndex + 1 >= eventTracks.length ? 0 : currentTrackIndex + 1);
-  }, [playTrack, currentTrackIndex, eventTracks]);
+    playTrack(currentTrackIndex + 1 >= tracksIds.length ? 0 : currentTrackIndex + 1);
+  }, [playTrack, currentTrackIndex, tracksIds]);
+
+  const updateTrackLiked = (trackIndex, trackRemoved, trackLiked) => {
+    setTracks((prevCurrentTracks) => {
+      let nextCurrentTrack;
+      if (!trackRemoved) {
+        nextCurrentTrack = {
+          ...prevCurrentTracks[tracksIds[trackIndex]],
+          liked: trackLiked,
+        };
+      }
+
+      return {
+        ...prevCurrentTracks,
+        [tracksIds[trackIndex]]: nextCurrentTrack,
+      };
+    });
+  };
+
+  const addTrackToLiked = (trackIndex) => {
+    tracksLikedRef.current += 1;
+    if (tracksLikedRef.current === 1) {
+      setEventTracksLikable(true);
+    }
+    updateTrackLiked(trackIndex, false, true);
+  };
+
+  const removeTrackToLiked = (trackIndex) => {
+    tracksLikedRef.current -= 1;
+    if (!tracksLikedRef.current) {
+      tracksLikedRef.current = 0;
+      setEventTracksLikable(false);
+    }
+    if (!eventTracksLiked) {
+      updateTrackLiked(trackIndex, false, false);
+    } else {
+      const nextTracksIds = [
+        // eslint-disable-line
+        ...tracksIds.slice(0, trackIndex),
+        ...tracksIds.slice(trackIndex + 1),
+      ];
+      updateTrackLiked(trackIndex, true);
+      if (!_.isEmpty(nextTracksIds)) {
+        setTracksIds(nextTracksIds);
+        if (currentTrackIndex === trackIndex) {
+          if (currentTrackPlayed) {
+            playTrack(currentTrackIndex >= nextTracksIds.length ? 0 : currentTrackIndex);
+          } else {
+            setCurrentTrackIndex(currentTrackIndex >= nextTracksIds.length ? 0 : currentTrackIndex);
+          }
+        } else if (currentTrackIndex > trackIndex) {
+          setCurrentTrackIndex(currentTrackIndex - 1 < 0 ? nextTracksIds.length - 1 : currentTrackIndex - 1);
+        }
+      } else {
+        setEventTracksLiked(false);
+      }
+    }
+  };
 
   const getCurrentTrackData = () => {
     setCurrentTrackDuration(audioRef.current.duration);
@@ -54,8 +163,6 @@ const TilePlayer = ({ eventTracks }) => {
   const getCurrentTrackTime = () => {
     setCurrentTrackTime(audioRef.current.currentTime);
   };
-
-  // This is done to avoid skipping track by reaching end while draging!
 
   const reachCurrentTrackEnd = useCallback(() => {
     if (!currentTrackPlayed) return;
@@ -82,14 +189,11 @@ const TilePlayer = ({ eventTracks }) => {
     };
   }, [reachCurrentTrackEnd]);
 
-  const currentTrack = eventTracks[currentTrackIndex].track;
-
   return (
     <PlayerContainer>
       <PlayerHeader
-        // eslint-disable-line
-        currentTrackName={currentTrack.name}
-        currentTrackArtists={currentTrack.artists}
+        currentTrackName={currentTrack.name || ""}
+        currentTrackArtists={currentTrack.artists || []}
         currentTrackPlayed={currentTrackPlayed}
         currentTrackDuration={currentTrackDuration}
         currentTrackTime={currentTrackTime}
@@ -100,20 +204,20 @@ const TilePlayer = ({ eventTracks }) => {
         setAudioTime={setAudioTime}
       />
       <PlayerList>
-        {_.map(eventTracks, (track, trackIndex) => {
-          const {
-            track: { id: trackId, name: trackName, artists: trackArtists },
-          } = track;
+        {_.map(tracksIds, (trackId, trackIndex) => {
+          const { name: trackName, artists: trackArtists, liked: trackLiked } = tracks[tracksIds[trackIndex]] || {};
           return (
             <PlayerListItem
-              // eslint-disable-line
               key={trackId}
               currentTrackIndex={currentTrackIndex}
               currentTrackPlayed={currentTrackPlayed}
               trackIndex={trackIndex}
               trackName={trackName}
               trackArtists={trackArtists}
+              trackLiked={trackLiked}
               playTrack={playTrack}
+              addTrackToLiked={addTrackToLiked}
+              removeTrackToLiked={removeTrackToLiked}
             />
           );
         })}
@@ -128,6 +232,9 @@ const TilePlayer = ({ eventTracks }) => {
 
 TilePlayer.propTypes = {
   eventTracks: PropTypes.array.isRequired, // eslint-disable-line
+  eventTracksLiked: PropTypes.bool.isRequired,
+  setEventTracksLiked: PropTypes.func.isRequired,
+  setEventTracksLikable: PropTypes.func.isRequired,
 };
 
 export default TilePlayer;

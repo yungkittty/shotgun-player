@@ -81,7 +81,7 @@ const ControlsSeekBar = ({ currentTrackDuration, currentTrackTime, setAudioTime 
 ControlsSeekBar.propTypes = {
   currentTrackDuration: PropTypes.number.isRequired,
   currentTrackTime: PropTypes.number.isRequired,
-  setAudioTime: PropTypes.number.isRequired,
+  setAudioTime: PropTypes.func.isRequired,
 };
 
 export default ControlsSeekBar;

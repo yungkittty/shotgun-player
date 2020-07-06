@@ -18,6 +18,8 @@ const HomeContainer = styled(Container)`
 const HomeBodyContainer = styled(Container)`
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
   padding-top: 50px;
   padding-left: 10%;

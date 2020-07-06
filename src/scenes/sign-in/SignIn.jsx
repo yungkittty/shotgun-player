@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Container from "../../components/container";
 import Text from "../../components/text";
 import Button from "../../components/button";
+import { windowQueries } from "../../configurations/window";
 
 const SignInContainer = styled(Container)`
   margin: auto;
@@ -16,9 +17,13 @@ const SignInButton = styled(Button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 500px;
   height: 50px;
+  width: 100%;
   background-color: #1db954;
+
+  ${windowQueries.large`
+    width: 500px;
+  `}
 `;
 
 const SignIn = () => {

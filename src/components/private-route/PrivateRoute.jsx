@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Route, Redirect } from "react-router-dom";
+import Loader from "../loader";
 import useCurrentUser from "../../hooks/use-current-user";
 
 const PrivateRoute = ({ children, ...others }) => {
@@ -11,7 +12,7 @@ const PrivateRoute = ({ children, ...others }) => {
       // eslint-disable-next-line
       {...others}
       render={() => {
-        if (loading) return null;
+        if (loading) return <Loader />;
 
         if (id) return children;
 

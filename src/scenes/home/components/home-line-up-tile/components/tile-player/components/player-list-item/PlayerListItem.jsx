@@ -53,21 +53,30 @@ const ItemText = styled(Text)`
 `;
 
 const PlayerListItem = ({
-  // eslint-disable-line
   currentTrackIndex,
   currentTrackPlayed,
   trackIndex,
   trackName,
   trackArtists,
+  trackLiked,
   playTrack,
+  addTrackToLiked,
+  removeTrackToLiked,
 }) => {
-  const isLiked = false;
-
   // This should be memorized!
 
   const trackArtistsNames = _.map(trackArtists, (trackArtist) => trackArtist.name);
 
   const playThisTrack = () => playTrack(trackIndex);
+
+  const toggleLikeOfThisTrack = (event) => {
+    event.stopPropagation();
+    if (!trackLiked) {
+      addTrackToLiked(trackIndex);
+    } else {
+      removeTrackToLiked(trackIndex);
+    }
+  };
 
   return (
     <ItemContainer onClick={playThisTrack}>
@@ -92,7 +101,7 @@ const PlayerListItem = ({
         </ItemText>
       </ItemBodyContainer>
       <ItemMarginContainer>
-        <IconButton icon={isLiked ? fasHeart : farHeart} color="#fc0082" onClick={() => {}} />
+        <IconButton icon={trackLiked ? fasHeart : farHeart} color="#fc0082" onClick={toggleLikeOfThisTrack} />
       </ItemMarginContainer>
     </ItemContainer>
   );
@@ -104,7 +113,10 @@ PlayerListItem.propTypes = {
   trackIndex: PropTypes.number.isRequired,
   trackName: PropTypes.string.isRequired,
   trackArtists: PropTypes.array.isRequired, // eslint-disable-line
+  trackLiked: PropTypes.bool.isRequired,
   playTrack: PropTypes.func.isRequired,
+  addTrackToLiked: PropTypes.func.isRequired,
+  removeTrackToLiked: PropTypes.func.isRequired,
 };
 
 export default PlayerListItem;

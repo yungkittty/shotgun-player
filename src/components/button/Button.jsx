@@ -8,6 +8,7 @@ const Button = styled.button`
   border-radius: 8px;
   outline: unset;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   background-color: unset;
 
   &:hover {
