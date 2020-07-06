@@ -11,7 +11,7 @@ const PlayerContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-height: 500px;
+  height: 500px;
 `;
 
 const TilePlayer = ({
