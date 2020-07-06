@@ -1,5 +1,7 @@
 # Shotgun Player
 
+[__NOW AVAILABLE HERE__](https://yungkittty.github.io/shotgun-player)
+
 ## What's it ?
 
 Shotgun Player is a functional mock-up of what Shotgun could be if it would integrate a player directly on its website allowing to discover the artists playing at an event before making a purchase.
